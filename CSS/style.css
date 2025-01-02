@@ -1,0 +1,198 @@
+/* Import Font JetBrains Mono */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap');
+
+/* Reset */
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Global Styles */
+body {
+    font-family: 'JetBrains Mono', Arial, sans-serif; /* Font diubah ke JetBrains Mono */
+    line-height: 1.6;
+    padding: 0 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.dark-mode {
+    background-color: #1a202c;
+    color: #e2e8f0;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    padding: 20px 0;
+    background: linear-gradient(to bottom, #003366, #d7f3ff); /* Gradasi biru */
+    color: white;
+    border-bottom: 3px solid #003366; /* Memberikan garis bawah biru gelap */
+}
+
+header.dark {
+    background-color: #2d3748;
+}
+
+.profile-header {
+    margin-bottom: 20px;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid white;
+}
+
+/* Styling khusus untuk tulisan Syamil */
+h1 {
+    font-family: 'JetBrains Mono', Arial, sans-serif;
+    font-size: 2.5rem;
+    color: #87ceeb;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: color 0.3s, transform 0.3s;
+}
+
+h1:hover {
+    color: #d7f3ff;
+    transform: scale(1.1);
+}
+
+/* Tombol pada header */
+a.tbl-biru, a.tbl-pink {
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 15px 20px;
+    font-weight: bold;
+    font-family: 'JetBrains Mono', Arial, sans-serif; /* Font tombol */
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a.tbl-biru {
+    background: #003366;
+}
+
+a.tbl-biru:hover {
+    background: #d3d3d3;
+    color: black;
+}
+
+a.tbl-pink {
+    background: #003366;
+}
+
+a.tbl-pink:hover {
+    background: #3f72af;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    background-color: #333;
+    margin-bottom: 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'JetBrains Mono', Arial, sans-serif; /* Font navbar */
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #a9a9b0;
+    color: white;
+}
+
+/* Dark Mode Button */
+.dark-toggle-btn {
+    background-color: #333;
+    color: white;
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', Arial, sans-serif; /* Font button */
+}
+
+.dark-toggle-btn:hover {
+    background-color: #a9a9b0;
+}
+
+.sun-icon {
+    display: inline;
+}
+
+.moon-icon {
+    display: none;
+}
+
+body.dark-mode .sun-icon {
+    display: none;
+}
+
+body.dark-mode .moon-icon {
+    display: inline;
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-family: 'JetBrains Mono', Arial, sans-serif; /* Font diubah */
+}
+
+body.dark-mode section {
+    background-color: #2d3748;
+    color: white;
+}
+
+section h2 {
+    color: #87ceeb;
+    margin-bottom: 10px;
+}
+
+/* Animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s, transform 0.6s;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+} 
