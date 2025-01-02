@@ -4,7 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Profile</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Import Font JetBrains Mono */
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap');
+
+        /* Reset */
+        body, h1, h2, p, ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* Global Styles */
+        body {
+            font-family: 'JetBrains Mono', Arial, sans-serif;
+            line-height: 1.6;
+            padding: 0 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.light-mode {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        body.dark-mode {
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background: linear-gradient(to bottom, #003366, #d7f3ff);
+            color: white;
+            border-bottom: 3px solid #003366;
+        }
+
+        header.dark {
+            background-color: #2d3748;
+        }
+
+        .profile-header {
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 3px solid white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #87ceeb;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        h1:hover {
+            color: #d7f3ff;
+            transform: scale(1.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            padding: 1em;
+            background-color: #333;
+            margin-bottom: 20px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #a9a9b0;
+            color: white;
+        }
+
+        .dark-toggle-btn {
+            background-color: #333;
+            color: white;
+            padding: 0.5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .dark-toggle-btn:hover {
+            background-color: #a9a9b0;
+        }
+
+        section {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode section {
+            background-color: #2d3748;
+            color: white;
+        }
+
+        section h2 {
+            color: #87ceeb;
+            margin-bottom: 10px;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body class="light-mode">
     <header class="tengah">
@@ -25,11 +168,11 @@
         </button>
     </nav>
 
-
     <main>
         <section id="about" class="animate-on-scroll">
             <h2>About Me</h2>
-            <p>Hello! I'm Muhammad Syamil Al Faqih, a passionate web developer who loves creating modern and responsive designs.  </section>
+            <p>Hello! I'm Muhammad Syamil Al Faqih, a passionate web developer who loves creating modern and responsive designs.</p>
+        </section>
 
         <section id="education" class="animate-on-scroll">
             <h2>Education</h2>
@@ -42,7 +185,7 @@
         <section id="career" class="animate-on-scroll">
             <h2>Career</h2>
             <ul>
-                <li> Developer at Google (2024-present)</li>
+                <li>Developer at Google (2024-present)</li>
                 <li>Intern Web Developer at Apple.inc (2023-2023)</li>
             </ul>
         </section>
@@ -64,8 +207,55 @@
             </a>
         </p>
     </footer>
-    
 
-    <script src="js/script.js"></script>
+    <script>
+        // Toggle Dark Mode
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+        const body = document.body;
+
+        darkModeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+            body.classList.toggle("light-mode");
+
+            const icon = document.getElementById("toggle-icon");
+            const isDarkMode = body.classList.contains("dark-mode");
+
+            if (isDarkMode) {
+                icon.className = "moon-icon";
+                icon.textContent = "🌙";
+            } else {
+                icon.className = "sun-icon";
+                icon.textContent = "☀️";
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll(".navbar a[href^='#']").forEach(anchor => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute("href")).scrollIntoView({
+                    behavior: "smooth",
+                });
+            });
+        });
+
+        // Scroll Animation
+        const animateOnScroll = document.querySelectorAll(".animate-on-scroll");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        animateOnScroll.forEach((element) => {
+            observer.observe(element);
+        });
+    </script>
 </body>
 </html>
